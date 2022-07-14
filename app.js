@@ -3,7 +3,7 @@ const container=document.querySelector('.container');
 let condition=false;
 
 
-
+/* default dimension */
     function makeRows(rows, cols) {
         container.style.setProperty('--grid-rows', rows);
         container.style.setProperty('--grid-cols', cols);
