@@ -61,13 +61,12 @@ header{
   max-width: 600px;
   height: 600px;
   background-color: #ffff;
-  border:10px solid black;
+  border:20px solid black;
   display: flex;
   flex-wrap: wrap;
 }
 
 .Grid .box{
  border: 1px solid black;
-
-  height: auto; 
+ height: auto; 
 }

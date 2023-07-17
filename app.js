@@ -9,10 +9,8 @@
 let Grid = document.querySelector('.Grid');
 window.addEventListener('DOMContentLoaded', addBoxOnPageLoad);
 
-
-
-function addBoxOnGrid(onPageLoadBoxDimension){
-  for (let i = 1; i <= Math.pow(onPageLoadBoxDimension, 2); i++) {
+function addBoxOnGrid(dimension) {
+  for (let i = 1; i <= Math.pow(dimension, 2); i++) {
     let box = document.createElement('div');
     box.classList.add('box');
     Grid.append(box);
@@ -21,15 +19,29 @@ function addBoxOnGrid(onPageLoadBoxDimension){
 
 function addBoxOnPageLoad() {
   let onPageLoadBoxDimension = 16;
-  addBoxOnGrid(onPageLoadBoxDimension)
+  addBoxOnGrid(onPageLoadBoxDimension);
   let box = document.querySelectorAll('.box');
-  adjustBoxDimension(onPageLoadBoxDimension, box);
+  adjustBoxDimension(onPageLoadBoxDimension);
 }
 
-function adjustBoxDimension(dimension, box) {
+function adjustBoxDimension(dimension) {
+  let box = document.querySelectorAll('.box');
   box.forEach((box) => {
     box.style.flexBasis = `calc(100% / ${dimension})`;
   });
 }
 
-//events
+let dimennsionBtn = document.getElementById('dimennsion_btn');
+
+function displayUserDimension() {
+  Grid.innerHTML = ''; //clear previous boxes inside the grid container
+  let UserDimension = parseInt(prompt('ENTER GRID DIMENSION ? X ?'));
+  if (UserDimension && UserDimension <= 100) {
+    addBoxOnGrid(UserDimension);
+    adjustBoxDimension(UserDimension);
+  } else {
+    addBoxOnPageLoad();
+  }
+}
+
+dimennsionBtn.addEventListener('click', displayUserDimension);
