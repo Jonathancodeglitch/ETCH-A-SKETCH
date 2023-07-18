@@ -20,7 +20,6 @@ function addBoxOnGrid(dimension) {
 function addBoxOnPageLoad() {
   let onPageLoadBoxDimension = 16;
   addBoxOnGrid(onPageLoadBoxDimension);
-  let box = document.querySelectorAll('.box');
   adjustBoxDimension(onPageLoadBoxDimension);
 }
 
@@ -46,3 +45,15 @@ function displayUserDimension() {
 
 dimennsionBtn.addEventListener('click', displayUserDimension);
 
+//when user moves on boxes
+let isDrawing=false;
+Grid.addEventListener('mousedown',()=> isDrawing=true);
+Grid.addEventListener('mouseover', draw);
+Grid.addEventListener('mouseup',()=> isDrawing=false);
+//change the color of the box to black
+function draw(e) {
+  if (isDrawing && e.target.classList.contains('box')) {
+    let box = e.target;
+    box.style.backgroundColor = 'black';
+  }
+}

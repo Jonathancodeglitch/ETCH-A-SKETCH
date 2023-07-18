@@ -42,7 +42,7 @@ header{
 }
 
 .navigation > * +*{
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .navigation .btn{
@@ -67,7 +67,6 @@ header{
 }
 
 .Grid .box{
- border: 1px solid black;
- height: auto; 
- cursor:url('./img/brush.png'),crosshair;
+  height: auto; 
+  cursor:url("./img/pencil-solid.svg") ,crosshair;
 }
