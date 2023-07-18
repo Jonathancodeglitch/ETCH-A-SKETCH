@@ -68,5 +68,5 @@ header{
 
 .Grid .box{
   height: auto; 
-  cursor:url("./img/pencil-solid.svg") ,crosshair;
+  border-bottom: 1px solid black;
 }
