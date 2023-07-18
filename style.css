@@ -69,4 +69,5 @@ header{
 .Grid .box{
  border: 1px solid black;
  height: auto; 
+ cursor:url('./img/brush.png'),crosshair;
 }
