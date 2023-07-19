@@ -54,6 +54,25 @@ header{
   cursor: pointer;
 }
 
+.navigation .btn:hover{
+  transform: scale(0.95);
+}
+
+.default_picker_container{
+  position: relative;
+}
+
+input[type="color"]{
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
 /* Grid */
 .Grid{
   margin: 0  auto;
@@ -68,5 +87,5 @@ header{
 
 .Grid .box{
   height: auto; 
-  border-bottom: 1px solid black;
+ 
 }

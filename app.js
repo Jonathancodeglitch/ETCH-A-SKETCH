@@ -1,15 +1,7 @@
-/* build the UI */
-//create a 16 by 16 square in a container class on page load
-//make your squares change colors when a mouse hover on it ,make it look like a pen is drawing on your squares.
-// add a button on the UI that ask the user the number of squares he wants
-//once the users enters  a number the existing grid should be removed and a new one with the user specifics show be added
-//the new grid should grow or shrink to take the same width as the previous grid (width:950px;)
-//the max number a user can enter is 100
-
 let Grid = document.querySelector('.Grid');
-window.addEventListener('DOMContentLoaded', addBoxOnPageLoad);
 
 function addBoxOnGrid(dimension) {
+  //create boxes
   for (let i = 1; i <= Math.pow(dimension, 2); i++) {
     let box = document.createElement('div');
     box.classList.add('box');
@@ -18,12 +10,16 @@ function addBoxOnGrid(dimension) {
 }
 
 function addBoxOnPageLoad() {
+  //add box to grid on pageLoad with default dimension
   let onPageLoadBoxDimension = 16;
   addBoxOnGrid(onPageLoadBoxDimension);
   adjustBoxDimension(onPageLoadBoxDimension);
 }
 
+addBoxOnPageLoad();
+
 function adjustBoxDimension(dimension) {
+  // change box row and column on grid
   let box = document.querySelectorAll('.box');
   box.forEach((box) => {
     box.style.flexBasis = `calc(100% / ${dimension})`;
@@ -47,7 +43,6 @@ dimennsionBtn.addEventListener('click', displayUserDimension);
 
 //when user moves on boxes
 let isDrawing = false;
-let rainbow = false;
 
 Grid.addEventListener('mousedown', (e) => {
   e.preventDefault();
@@ -73,29 +68,75 @@ Grid.addEventListener('click', (e) => {
   }
 });
 
-function draw(e) {
-  let box = e.target;
-  if (rainbow) {
-    box.style.backgroundColor = getRainbowColour();
-  } else {
-    box.style.backgroundColor = 'black';
-  }
-}
-
-//when rainbow is clicked change pen ink to diffrent color
-//when eraser is click change pen to eraser
-//when pan is click it show default back to pen
-//when clear btn is press eraser everything in the gread
+let rainbow = false;
+let colorMode = false;
+let eraser = false;
 
 let rainbowBtn = document.getElementById('rainbow');
-
-rainbowBtn.addEventListener('click', () => {
-  rainbow = true;
-});
 
 function getRainbowColour() {
   const red = Math.floor(Math.random() * 255);
   const green = Math.floor(Math.random() * 255);
   const blue = Math.floor(Math.random() * 255);
   return `rgb(${red},${green},${blue})`;
+}
+
+rainbowBtn.addEventListener('click', () => {
+  changeGridCursor('./img/rainbow_pen.png');
+  rainbow = true;
+  colorMode = false;
+  eraser = false;
+});
+
+let colorModeBtn = document.getElementById('default_picker');
+
+function getColorMode() {
+  return colorModeBtn.value;
+}
+
+colorModeBtn.addEventListener('input', () => {
+  changeGridCursor('./img/pen.png');
+  colorMode = true;
+  rainbow = false;
+  eraser = false;
+});
+
+colorModeBtn.addEventListener('click', () => {
+  changeGridCursor('./img/pen.png');
+  colorMode = true;
+  rainbow = false;
+  eraser = false;
+});
+
+let eraserBtn = document.getElementById('eraser');
+
+eraserBtn.addEventListener('click', () => {
+  changeGridCursor('./img/eraser.png');
+  colorMode = false;
+  rainbow = false;
+  eraser = true;
+});
+
+let clear = document.getElementById('clear');
+
+clear.addEventListener('click', function () {
+  let box = document.querySelectorAll('.box');
+  box.forEach((box) => (box.style.backgroundColor = 'white'));
+});
+
+function changeGridCursor(url) {
+  Grid.style.cursor = `url('${url}'), auto`;
+}
+
+function draw(e) {
+  let box = e.target;
+  if (rainbow) {
+    box.style.backgroundColor = getRainbowColour();
+  } else if (colorMode) {
+    box.style.backgroundColor = getColorMode();
+  } else if (eraser) {
+    box.style.backgroundColor = 'white';
+  } else {
+    box.style.backgroundColor = getColorMode();
+  }
 }
