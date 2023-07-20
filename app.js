@@ -26,25 +26,6 @@ function adjustBoxDimension(dimension) {
   });
 }
 
-let dimennsionBtn = document.getElementById('dimennsion_btn');
-
-function displayUserDimension() {
-  rainbow = false;
-  colorMode = true;
-  eraser = false;
-  Grid.innerHTML = ''; //clear previous boxes inside the grid container
-  changeGridCursor('./img/pen.png'); // grid default cursor
-  let UserDimension = parseInt(prompt('ENTER GRID DIMENSION ? X ?'));
-  if (UserDimension && UserDimension <= 100) {
-    addBoxOnGrid(UserDimension);
-    adjustBoxDimension(UserDimension);
-  } else {
-    addBoxOnPageLoad();
-  }
-}
-
-dimennsionBtn.addEventListener('click', displayUserDimension);
-
 //when user moves on boxes
 let isDrawing = false;
 
@@ -75,6 +56,24 @@ Grid.addEventListener('click', (e) => {
 let rainbow = false;
 let colorMode = false;
 let eraser = false;
+
+function displayUserDimension() {
+  rainbow = false;
+  colorMode = true;
+  eraser = false;
+  Grid.innerHTML = ''; //clear previous boxes inside the grid container
+  changeGridCursor('./img/pen.png'); // grid default cursor
+  let UserDimension = parseInt(prompt('ENTER GRID DIMENSION ? X ?'));
+  if (UserDimension && UserDimension <= 100) {
+    addBoxOnGrid(UserDimension);
+    adjustBoxDimension(UserDimension);
+  } else {
+    addBoxOnPageLoad();
+  }
+}
+
+let dimennsionBtn = document.getElementById('dimennsion_btn');
+dimennsionBtn.addEventListener('click', displayUserDimension);
 
 let rainbowBtn = document.getElementById('rainbow');
 
