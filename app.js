@@ -29,7 +29,11 @@ function adjustBoxDimension(dimension) {
 let dimennsionBtn = document.getElementById('dimennsion_btn');
 
 function displayUserDimension() {
+  rainbow = false;
+  colorMode = true;
+  eraser = false;
   Grid.innerHTML = ''; //clear previous boxes inside the grid container
+  changeGridCursor('./img/pen.png'); // grid default cursor
   let UserDimension = parseInt(prompt('ENTER GRID DIMENSION ? X ?'));
   if (UserDimension && UserDimension <= 100) {
     addBoxOnGrid(UserDimension);
@@ -128,6 +132,8 @@ function changeGridCursor(url) {
   Grid.style.cursor = `url('${url}'), auto`;
 }
 
+changeGridCursor('./img/pen.png'); // grid default cursor
+
 function draw(e) {
   let box = e.target;
   if (rainbow) {
@@ -140,3 +146,17 @@ function draw(e) {
     box.style.backgroundColor = getColorMode();
   }
 }
+
+// outline tool when clicked
+let btns = document.querySelectorAll('.btn');
+
+btns.forEach((btn) => {
+  btn.addEventListener('click', function () {
+    btns.forEach((btn) => {
+      btn.style.transform = '';
+      btn.style.fontWeight = '400';
+    });
+    this.style.transform = 'scale(1.1)';
+    this.style.fontWeight = '700';
+  });
+});

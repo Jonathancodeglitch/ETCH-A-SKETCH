@@ -14,8 +14,8 @@ body{
 
 ul{
   list-style: none;
-  
 }
+
 .container{
   max-width: 1200px;
   margin: 0 auto;
@@ -27,7 +27,7 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .logo{
@@ -49,14 +49,11 @@ header{
   border: 1px solid #ffff;
   border-radius: 5px;
   color: #ffff;
-  padding: 8px 22px;
-  font-weight: 700;
+  padding: 8px 15px;
+  font-weight: 400;
   cursor: pointer;
 }
 
-.navigation .btn:hover{
-  transform: scale(0.95);
-}
 
 .default_picker_container{
   position: relative;
@@ -76,7 +73,7 @@ input[type="color"]{
 /* Grid */
 .Grid{
   margin: 0  auto;
-  margin-top: 60px;
+  margin-top: 40px;
   max-width: 600px;
   height: 600px;
   background-color: #ffff;
