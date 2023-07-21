@@ -9,6 +9,14 @@ function addBoxOnGrid(dimension) {
   }
 }
 
+function adjustBoxDimension(dimension) {
+  // change box row and column on grid
+  let box = document.querySelectorAll('.box');
+  box.forEach((box) => {
+    box.style.flexBasis = `calc(100% / ${dimension})`;
+  });
+}
+
 function addBoxOnPageLoad() {
   //add box to grid on pageLoad with default dimension
   let onPageLoadBoxDimension = 16;
@@ -17,14 +25,6 @@ function addBoxOnPageLoad() {
 }
 
 addBoxOnPageLoad();
-
-function adjustBoxDimension(dimension) {
-  // change box row and column on grid
-  let box = document.querySelectorAll('.box');
-  box.forEach((box) => {
-    box.style.flexBasis = `calc(100% / ${dimension})`;
-  });
-}
 
 //when user moves on boxes
 let isDrawing = false;
